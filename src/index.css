@@ -9,7 +9,7 @@
 }
 
 body, html {
-  font-family: sans-serif;
+  font-family: 'Roboto', sans-serif;
   scroll-behavior: smooth;
 }
 
@@ -37,6 +37,22 @@ body, html {
 .nav-active {
   background-color:#000000 !important;
   box-shadow: 5px -1px 12px -5px grey;
+}
+
+.aboutTitle::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 40%;
+  height: 8px;
+  background-color: rgb(252 211 77);
+  animation: about-title 1s ease-in-out;
+}
+
+@keyframes about-title {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0px); }
 }
 
 @keyframes fadeInAnimate {

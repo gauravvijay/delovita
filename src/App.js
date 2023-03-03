@@ -14,6 +14,7 @@ function App() {
     const personsCards = document.querySelectorAll('.person-card');
     const heroTitle = document.querySelector('.hero-title');
     const heroDescription = document.querySelector('.hero-description');
+    const aboutTitle = document.querySelector('.aboutSectionTitle');
 
     const navbar = document.querySelector('.navbar-custom');
 
@@ -50,6 +51,14 @@ function App() {
           entry.target.style.opacity = 1;
         }
       })
+    };
+ 
+    const aboutTitleObserver = (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('aboutTitle')
+        }
+      })
     }; 
 
     const options = { 
@@ -60,6 +69,7 @@ function App() {
     const myObserver = new IntersectionObserver(cardsObserver, options);
     const myObserver2 = new IntersectionObserver(heroTitleObserver, options);
     const myObserver3 = new IntersectionObserver(heroDescriptionObserver, options);
+    const myObserver4 = new IntersectionObserver(aboutTitleObserver, options);
 
     personsCards.forEach(function(element){
       myObserver.observe(element)
@@ -67,11 +77,12 @@ function App() {
 
     myObserver2.observe(heroTitle);
     myObserver3.observe(heroDescription);
+    myObserver4.observe(aboutTitle);
   }, []);
 
   return (
     <main>
-      <section className="text-white h-[120vh] hero-section">
+      <section className="text-white sm:h-[120vh] h-[100vh] hero-section">
         <nav className="bg-transparent transition-all py-4 fixed top-0 left-0 right-0 z-40 navbar-custom">
           <div className="container mx-auto md:px-0 px-8">
             <div className="flex items-center justify-between">
@@ -114,18 +125,20 @@ function App() {
         </nav>
         <div className="container mx-auto py-40 md:px-0 px-8">
           <div className="lg:w-[50%] w-[100%]">
-            <h1 className="md:text-[80px] text-[50px] text-white leading-[1.2em] hero-title opacity-0">
-              <span className="text-[#E5E341]">Reimagine EV sourcing</span> with our network
+            <h1 className="md:text-[80px] font-bold text-[40px] text-white leading-[1.2em] hero-title opacity-0 drop-shadow-lg shadow-black">
+              <span className="text-amber-300">Reimagine EV sourcing</span> with our network
             </h1>
-            <h6 className="md:text-[30px] text-[30px] leading-normal hero-description opacity-0 pt-8">Use Digital-Supply-Networks to reimagine your Business</h6>
+            <h6 className="md:text-[30px] text-[24px] leading-normal hero-description opacity-0 pt-8 drop-shadow-lg shadow-black">Use Digital-Supply-Networks to reimagine your Business</h6>
           </div>
         </div>
       </section>
-      <section className="bg-[#8A8A8A] py-10 text-white py-20" id="about">
+      <section className="py-10 py-20" id="about">
         <div className="container mx-auto md:px-0 px-8">
-          <h2 className="text-5xl text-center font-bold mb-14 text-[#E5E341]">Who are we</h2>
+          <h2 className="sm:text-5xl text-[32px] text-center aboutSectionTitle font-bold mb-14 text-black relative w-[170px] sm:w-[250px] mx-auto">
+            Who are we
+          </h2>
           <div className="grid md:grid-cols-2 grid-cols-1 justify-center gap-20 md:w-[50%] w-[100%] mx-auto">
-            <div className="person-card opacity-0">
+            <div className="person-card opacity-0 shadow-sm">
               <div className="relative rounded-lg overflow-hidden mb-4">
                 <img className="w-full h-full object-cover transition duration-500 ease-in-out transform hover:scale-110" src={Jindal} alt="Person 1" />
               </div>
@@ -133,13 +146,13 @@ function App() {
                 <h3 className="text-[23px] font-bold text-center">Gaurav Jindal</h3>
                 <div className="flex flex-col items-center justify-between">
                   <p className="text-[14px]">CoFounder, Business -  Ex Apple Ex COO</p>
-                  <div className="flex items-center gap-2 mt-2">
+                  <div className="flex items-center gap-2 mt-2 mb-4">
                     <img src={AppleLogo} className="rounded-full" alt="Apple" width="50" />
                   </div>
                 </div>
               </div>
             </div>
-            <div className="person-card opacity-0">
+            <div className="person-card opacity-0 shadow-sm">
               <div className="relative rounded-lg overflow-hidden mb-4">
                 <img className="w-full h-full object-cover transition duration-500 ease-in-out transform hover:scale-110" src={Vijay} alt="Person 2" />
               </div>
@@ -147,7 +160,7 @@ function App() {
                 <h3 className="text-[23px] font-bold text-center">Gaurav Vijay</h3>
                 <div className="flex flex-col items-center justify-between">
                   <p className="text-[14px]">CoFounder, Tech -  Ex Google Ex Meta</p>
-                  <div className="flex items-center gap-2 mt-2">
+                  <div className="flex items-center gap-2 mt-2 mb-4">
                     <img src={MetaLogo} className="rounded-full" alt="Meta" width="50" />
                     <img src={GoogleLogo} className="rounded-full" alt="Google" width="50" />
                   </div>
@@ -182,11 +195,11 @@ function App() {
         </div>
       </section>
       <section className="bg-black text-white pt-18 pb-24" id="contact">
-        <div className="container mx-auto md:px-0 px-8">
+        <div className="container mx-auto">
           <div className="md:w-[50%] w-[100%] mx-auto p-10 flex flex-col justify-center">
             <div className="text-center">
-              <h2 className="text-5xl font-bold mb-3 text-[#E5E341]">Contact Us</h2>
-              <p>Leave us your email and we will surely get back to you</p>
+              <h2 className="sm:text-5xl text-[32px] font-bold mb-3 text-amber-300 drop-shadow-lg">Contact Us</h2>
+              <p className="sm:text-[16px] text-[15px]">Leave us your email and we will surely get back to you</p>
             </div>
             <form className="mt-6" action="mailto:delovita@gmail.com" method="post" encType="text/plain">
               <div className="flex flex-col items-center w-full">
